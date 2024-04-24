@@ -65,6 +65,7 @@ public class Pet(
         Console.WriteLine("1: Play With Your Pet");
         Console.WriteLine("2: Check Tasks");
         Console.WriteLine("3: Exit The Game");
+        Console.WriteLine("=================");
         Console.Write("> ");
 
         var input = Console.ReadLine();
