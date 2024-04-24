@@ -1,0 +1,12 @@
+[
+  {
+    "name": "ADrian",
+    "petType": "bird",
+    "petHunger": 100,
+    "petHappy": 100,
+    "money": 0,
+    "currentPet": true,
+    "hasFeedPet": false,
+    "hasPlayedWithPet": false
+  }
+]
