@@ -9,8 +9,8 @@ public class Program
     public static List<Pet> Pets = [];
     public static Pet CurrentPet = new Pet("", "", 0, 0, 0, false, false, false);
     public static Tasks CurrentTask = Tasks.CreateTask();
-    public static List<Food> foods = new List<Food>();
-    public static List<Toy> toys = new List<Toy>();
+    public static List<Food> Foods = new List<Food>();
+    public static List<Toy> Toys = new List<Toy>();
 
     public static void Main()
     {
@@ -56,8 +56,8 @@ public class Program
         };
 
         Pets.Add(new Pet(name, petType, 100, 100, 0, true, false, false));
-        foods.Add(new Food($"{petType} Food", 0, Food.GetFillingLevel(), 10));
-        toys.Add(new Toy($"{petType} Toy", 0, Toy.GetHappyLevel(), 10));
+        Foods.Add(new Food($"{petType} Food", 0, Food.GetFillingLevel(), 10));
+        Toys.Add(new Toy($"{petType} Toy", 0, Toy.GetHappyLevel(), 10));
 
         SavePet();
         SaveTasks();
@@ -84,8 +84,8 @@ public class Program
     public static void SaveInventory()
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
-        string foodJson = JsonSerializer.Serialize(foods, options);
-        string toyJson = JsonSerializer.Serialize(toys, options);
+        string foodJson = JsonSerializer.Serialize(Foods, options);
+        string toyJson = JsonSerializer.Serialize(Toys, options);
         string foodPath = SaveDir + "Food.json";
         string toyPath = SaveDir + "Toy.json";
         File.WriteAllText(foodPath, foodJson);
@@ -110,7 +110,7 @@ public class Program
     {
         string foodJson = File.ReadAllText(SaveDir + "Food.json");
         string toyJson = File.ReadAllText(SaveDir + "Toy.json");
-        foods = JsonSerializer.Deserialize<List<Food>>(foodJson)!;
-        toys = JsonSerializer.Deserialize<List<Toy>>(toyJson)!;
+        Foods = JsonSerializer.Deserialize<List<Food>>(foodJson)!;
+        Toys = JsonSerializer.Deserialize<List<Toy>>(toyJson)!;
     }
 }

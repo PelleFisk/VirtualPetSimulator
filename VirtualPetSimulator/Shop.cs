@@ -43,7 +43,7 @@ public class Shop
         {
             Program.CurrentPet.money -= cost;
             Console.WriteLine("You bought food for your pet");
-            Program.foods.Add(new Food($"{Program.CurrentPet.petType} Food", Program.foods.Count(),
+            Program.Foods.Add(new Food($"{Program.CurrentPet.petType} Food", Program.Foods.Count(),
                 Food.GetFillingLevel(), GetUses()));
             Console.ReadLine();
             ShopUi();
@@ -63,7 +63,7 @@ public class Shop
         {
             Program.CurrentPet.money -= cost;
             Console.WriteLine("You bought a toy for your pet");
-            Program.toys.Add(new Toy($"{Program.CurrentPet.petType} Toy", Program.toys.Count(), Toy.GetHappyLevel(),
+            Program.Toys.Add(new Toy($"{Program.CurrentPet.petType} Toy", Program.Toys.Count(), Toy.GetHappyLevel(),
                 GetUses()));
             Console.ReadLine();
             ShopUi();

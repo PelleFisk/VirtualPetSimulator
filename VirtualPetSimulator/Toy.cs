@@ -1,8 +1,8 @@
 ﻿namespace VirtualPetSimulator;
 
-public class Toy(string description, int id, int happyLevel, int uses)
+public class Toy(string name, int id, int happyLevel, int uses)
 {
-    public string description { get; set; } = description;
+    public string name { get; set; } = name;
     public int id { get; set; } = id;
     public int happyLevel { get; set; } = happyLevel;
     public int uses { get; set; } = uses;

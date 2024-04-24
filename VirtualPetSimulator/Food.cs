@@ -1,8 +1,8 @@
 ﻿namespace VirtualPetSimulator;
 
-public class Food(string description, int id, int fillingLevel, int uses)
+public class Food(string name, int id, int fillingLevel, int uses)
 {
-    public string description { get; set; } = description;
+    public string name { get; set; } = name;
     public int id { get; set; } = id;
     public int fillingLevel { get; set; } = fillingLevel;
     public int uses { get; set; } = uses;
