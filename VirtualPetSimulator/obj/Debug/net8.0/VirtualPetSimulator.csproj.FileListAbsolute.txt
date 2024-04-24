@@ -12,3 +12,4 @@ C:\Users\adria\Code\VirtualPetSimulator\VirtualPetSimulator\obj\Debug\net8.0\ref
 C:\Users\adria\Code\VirtualPetSimulator\VirtualPetSimulator\obj\Debug\net8.0\VirtualPetSimulator.pdb
 C:\Users\adria\Code\VirtualPetSimulator\VirtualPetSimulator\obj\Debug\net8.0\VirtualPetSimulator.genruntimeconfig.cache
 C:\Users\adria\Code\VirtualPetSimulator\VirtualPetSimulator\obj\Debug\net8.0\ref\VirtualPetSimulator.dll
+C:\Users\adria\Code\VirtualPetSimulator\VirtualPetSimulator\obj\Debug\net8.0\VirtualPetSimulator.sourcelink.json

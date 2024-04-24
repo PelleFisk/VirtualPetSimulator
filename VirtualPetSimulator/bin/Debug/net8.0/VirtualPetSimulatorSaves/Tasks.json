@@ -1,8 +1,8 @@
 {
-  "description": "Feed your pet 5 times",
+  "description": "Play with your pet 5 times",
   "progression": 0,
   "times": 5,
   "taskReward": 100,
-  "type": 1,
+  "type": 2,
   "completed": false
 }
