@@ -13,7 +13,7 @@ public class HappyLevel
             Console.WriteLine($"Toy Uses: {toy.uses}");
             Console.WriteLine("=================");
 
-            Console.WriteLine("Please enetr in the id of the toy you want to use");
+            Console.WriteLine("Please enter in the id of the toy you want to use");
             Console.Write("> ");
             if (int.TryParse(Console.ReadLine()!, out int id))
             {

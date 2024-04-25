@@ -6,7 +6,7 @@ public class Shop
     {
         while (true)
         {
-            Console.WriteLine($"Money: {Program.CurrentPet.money}");
+            // Console.WriteLine($"Money: {Program.CurrentPet.money}");
             Console.WriteLine("==============");
             Console.WriteLine("1: Buy Food");
             Console.WriteLine("2: Buy Toy");
@@ -18,10 +18,10 @@ public class Shop
             switch (input)
             {
                 case "1":
-                    BuyFood();
+                    // BuyFood();
                     break;
                 case "2":
-                    BuyToy();
+                    // BuyToy();
                     break;
                 case "3":
                     Pet.PetUi();
@@ -39,9 +39,9 @@ public class Shop
     public static void BuyFood()
     {
         int cost = GetCostOfItem();
-        if (Program.CurrentPet.money >= cost)
+        if (Program.bank.money >= cost)
         {
-            Program.CurrentPet.money -= cost;
+            Program.bank.money -= cost;
             Console.WriteLine("You bought food for your pet");
             Program.Foods.Add(new Food($"{Program.CurrentPet.petType} Food", Program.Foods.Count(),
                 Food.GetFillingLevel(), GetUses()));
@@ -59,9 +59,9 @@ public class Shop
     public static void BuyToy()
     {
         int cost = GetCostOfItem();
-        if (Program.CurrentPet.money >= cost)
+        if (Program.bank.money >= cost)
         {
-            Program.CurrentPet.money -= cost;
+            Program.bank.money -= cost;
             Console.WriteLine("You bought a toy for your pet");
             Program.Toys.Add(new Toy($"{Program.CurrentPet.petType} Toy", Program.Toys.Count(), Toy.GetHappyLevel(),
                 GetUses()));

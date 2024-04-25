@@ -73,7 +73,7 @@ public class Tasks(string? description, int progression, int times, int taskRewa
     {
         if (Program.CurrentTask.completed)
         {
-            Program.CurrentPet.money += Program.CurrentTask.taskReward;
+            Program.bank.money += Program.CurrentTask.taskReward;
         }
     }
 }

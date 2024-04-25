@@ -6,7 +6,6 @@ public class Pet(
     string? petType,
     int petHunger,
     int petHappy,
-    int money,
     bool currentPet,
     bool hasFeedPet,
     bool hasPlayedWithPet)
@@ -15,7 +14,6 @@ public class Pet(
     public string? petType { get; set; } = petType;
     public int petHunger { get; set; } = petHunger;
     public int petHappy { get; set; } = petHappy;
-    public int money { get; set; } = money;
     public bool currentPet { get; set; } = currentPet;
     public bool hasFeedPet { get; set; } = hasFeedPet;
     public bool hasPlayedWithPet { get; set; } = hasPlayedWithPet;
@@ -57,14 +55,15 @@ public class Pet(
         Console.WriteLine($"Pet Type: {Program.CurrentPet.petType}");
         AddColorToTerminal.AddColor($"Hunger: {Program.CurrentPet.petHunger}%", ConsoleColor.Red);
         AddColorToTerminal.AddColor($"Happy: {Program.CurrentPet.petHappy}%", ConsoleColor.Yellow);
-        Console.WriteLine($"Money: {Program.CurrentPet.money}");
+        Console.WriteLine($"Money: {Program.bank.money}");
         Console.WriteLine("=================");
 
         Console.WriteLine("What do you wish to do?");
         Console.WriteLine("0: Feed Your Pet");
         Console.WriteLine("1: Play With Your Pet");
         Console.WriteLine("2: Check Tasks");
-        Console.WriteLine("3: Exit The Game");
+        Console.WriteLine("3: Bank");
+        Console.WriteLine("4: Exit The Game");
         Console.Write("> ");
 
         var input = Console.ReadLine();
@@ -81,9 +80,13 @@ public class Pet(
                 Tasks.TaskUi();
                 break;
             case "3":
+                Bank.BankUi();
+                break;
+            case "4":
                 Program.SavePet();
                 Program.SaveTasks();
                 Program.SaveInventory();
+                Program.SaveBank();
                 break;
         }
     }

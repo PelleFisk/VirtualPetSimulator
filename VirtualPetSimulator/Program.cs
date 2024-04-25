@@ -7,10 +7,11 @@ public class Program
     static readonly string SaveDir = Environment.CurrentDirectory + @"\VirtualPetSimulatorSaves\";
 
     public static List<Pet> Pets = [];
-    public static Pet CurrentPet = new Pet("", "", 0, 0, 0, false, false, false);
+    public static Pet CurrentPet = new Pet("", "", 0, 0, false, false, false);
     public static Tasks CurrentTask = Tasks.CreateTask();
     public static List<Food> Foods = new List<Food>();
     public static List<Toy> Toys = new List<Toy>();
+    public static Bank bank = new Bank();
 
     public static void Main()
     {
@@ -23,6 +24,7 @@ public class Program
         LoadPet();
         LoadTasks();
         LoadInventory();
+        LoadBank();
         Pet.PetUi();
     }
 
@@ -55,13 +57,14 @@ public class Program
             _ => ""
         };
 
-        Pets.Add(new Pet(name, petType, 100, 100, 0, true, false, false));
+        Pets.Add(new Pet(name, petType, 100, 100, true, false, false));
         Foods.Add(new Food($"{petType} Food", 0, Food.GetFillingLevel(), 10));
         Toys.Add(new Toy($"{petType} Toy", 0, Toy.GetHappyLevel(), 10));
 
         SavePet();
         SaveTasks();
         SaveInventory();
+        SaveBank();
     }
 
     // Saves the progress the player has made
@@ -92,6 +95,14 @@ public class Program
         File.WriteAllText(toyPath, toyJson);
     }
 
+    public static void SaveBank()
+    {
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string json = JsonSerializer.Serialize(bank, options);
+        string path = SaveDir + "Bank.json";
+        File.WriteAllText(path, json);
+    }
+
     // Loads at start
     private static void LoadPet()
     {
@@ -112,5 +123,11 @@ public class Program
         string toyJson = File.ReadAllText(SaveDir + "Toy.json");
         Foods = JsonSerializer.Deserialize<List<Food>>(foodJson)!;
         Toys = JsonSerializer.Deserialize<List<Toy>>(toyJson)!;
+    }
+
+    private static void LoadBank()
+    {
+        string loadedJson = File.ReadAllText(SaveDir + "Bank.json");
+        bank = JsonSerializer.Deserialize<Bank>(loadedJson)!;
     }
 }
