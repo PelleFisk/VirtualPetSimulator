@@ -18,10 +18,10 @@ public class Shop
             switch (input)
             {
                 case "1":
-                    // BuyFood();
+                    BuyFood();
                     break;
                 case "2":
-                    // BuyToy();
+                    BuyToy();
                     break;
                 case "3":
                     Pet.PetUi();

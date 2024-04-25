@@ -7,11 +7,12 @@ public class Program
     static readonly string SaveDir = Environment.CurrentDirectory + @"\VirtualPetSimulatorSaves\";
 
     public static List<Pet> Pets = [];
-    public static Pet CurrentPet = new Pet("", "", 0, 0, false, false, false);
+    public static Pet CurrentPet = new("", "", 0, 0, false, false, false);
     public static Tasks CurrentTask = Tasks.CreateTask();
-    public static List<Food> Foods = new List<Food>();
-    public static List<Toy> Toys = new List<Toy>();
-    public static Bank bank = new Bank();
+    public static List<Food> Foods = new();
+    public static List<Toy> Toys = new();
+    public static Bank bank = new();
+    public static List<PetType> unlockedPetTypes = new();
 
     public static void Main()
     {
@@ -25,6 +26,7 @@ public class Program
         LoadTasks();
         LoadInventory();
         LoadBank();
+        LoadPetTypes();
         Pet.PetUi();
     }
 
@@ -60,11 +62,13 @@ public class Program
         Pets.Add(new Pet(name, petType, 100, 100, true, false, false));
         Foods.Add(new Food($"{petType} Food", 0, Food.GetFillingLevel(), 10));
         Toys.Add(new Toy($"{petType} Toy", 0, Toy.GetHappyLevel(), 10));
+        unlockedPetTypes = PetType.AddDefaultPetTypes();
 
         SavePet();
         SaveTasks();
         SaveInventory();
         SaveBank();
+        SavePetTypes();
     }
 
     // Saves the progress the player has made
@@ -103,6 +107,14 @@ public class Program
         File.WriteAllText(path, json);
     }
 
+    public static void SavePetTypes()
+    {
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string json = JsonSerializer.Serialize(unlockedPetTypes, options);
+        string path = SaveDir + "PetTypes.json";
+        File.WriteAllText(path, json);
+    }
+
     // Loads at start
     private static void LoadPet()
     {
@@ -129,5 +141,11 @@ public class Program
     {
         string loadedJson = File.ReadAllText(SaveDir + "Bank.json");
         bank = JsonSerializer.Deserialize<Bank>(loadedJson)!;
+    }
+
+    private static void LoadPetTypes()
+    {
+        string loadedJson = File.ReadAllText(SaveDir + "PetTypes.json");
+        unlockedPetTypes = JsonSerializer.Deserialize<List<PetType>>(loadedJson)!;
     }
 }

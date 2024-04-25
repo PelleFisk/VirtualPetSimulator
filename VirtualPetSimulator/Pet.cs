@@ -63,7 +63,9 @@ public class Pet(
         Console.WriteLine("1: Play With Your Pet");
         Console.WriteLine("2: Check Tasks");
         Console.WriteLine("3: Bank");
-        Console.WriteLine("4: Exit The Game");
+        Console.WriteLine("4: Go To The Shop");
+        Console.WriteLine("5: Go To The Pet Shop");
+        Console.WriteLine("6: Exit The Game");
         Console.Write("> ");
 
         var input = Console.ReadLine();
@@ -83,6 +85,12 @@ public class Pet(
                 Bank.BankUi();
                 break;
             case "4":
+                Shop.ShopUi();
+                break;
+            case "5":
+                PetShop.PetShopUi();
+                break;
+            case "6":
                 Program.SavePet();
                 Program.SaveTasks();
                 Program.SaveInventory();
