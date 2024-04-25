@@ -55,17 +55,16 @@ public class Pet(
         Console.WriteLine($"Pet Type: {Program.CurrentPet.petType}");
         AddColorToTerminal.AddColor($"Hunger: {Program.CurrentPet.petHunger}%", ConsoleColor.Red);
         AddColorToTerminal.AddColor($"Happy: {Program.CurrentPet.petHappy}%", ConsoleColor.Yellow);
-        Console.WriteLine($"Money: {Program.bank.money}");
+        Console.WriteLine($"Money: {Program.Data.Money}");
         Console.WriteLine("=================");
 
         Console.WriteLine("What do you wish to do?");
         Console.WriteLine("0: Feed Your Pet");
         Console.WriteLine("1: Play With Your Pet");
         Console.WriteLine("2: Check Tasks");
-        Console.WriteLine("3: Bank");
-        Console.WriteLine("4: Go To The Shop");
-        Console.WriteLine("5: Go To The Pet Shop");
-        Console.WriteLine("6: Exit The Game");
+        Console.WriteLine("3: Go To The Shop");
+        Console.WriteLine("4: Go To The Pet Shop");
+        Console.WriteLine("5: Exit The Game");
         Console.Write("> ");
 
         var input = Console.ReadLine();
@@ -82,19 +81,17 @@ public class Pet(
                 Tasks.TaskUi();
                 break;
             case "3":
-                Bank.BankUi();
-                break;
-            case "4":
                 Shop.ShopUi();
                 break;
-            case "5":
+            case "4":
                 PetShop.PetShopUi();
                 break;
-            case "6":
+            case "5":
                 Program.SavePet();
                 Program.SaveTasks();
                 Program.SaveInventory();
-                Program.SaveBank();
+                Program.SavePetTypes();
+                Program.SaveGlobalData();
                 break;
         }
     }

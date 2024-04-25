@@ -11,8 +11,8 @@ public class Program
     public static Tasks CurrentTask = Tasks.CreateTask();
     public static List<Food> Foods = new();
     public static List<Toy> Toys = new();
-    public static Bank bank = new();
-    public static List<PetType> unlockedPetTypes = new();
+    public static List<PetType> UnlockedPetTypes = new();
+    public static GlobalData Data = new();
 
     public static void Main()
     {
@@ -25,8 +25,8 @@ public class Program
         LoadPet();
         LoadTasks();
         LoadInventory();
-        LoadBank();
         LoadPetTypes();
+        LoadGlobalData();
         Pet.PetUi();
     }
 
@@ -62,13 +62,13 @@ public class Program
         Pets.Add(new Pet(name, petType, 100, 100, true, false, false));
         Foods.Add(new Food($"{petType} Food", 0, Food.GetFillingLevel(), 10));
         Toys.Add(new Toy($"{petType} Toy", 0, Toy.GetHappyLevel(), 10));
-        unlockedPetTypes = PetType.AddDefaultPetTypes();
+        UnlockedPetTypes = PetType.AddDefaultPetTypes();
 
         SavePet();
         SaveTasks();
         SaveInventory();
-        SaveBank();
         SavePetTypes();
+        SaveGlobalData();
     }
 
     // Saves the progress the player has made
@@ -99,19 +99,19 @@ public class Program
         File.WriteAllText(toyPath, toyJson);
     }
 
-    public static void SaveBank()
-    {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(bank, options);
-        string path = SaveDir + "Bank.json";
-        File.WriteAllText(path, json);
-    }
-
     public static void SavePetTypes()
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(unlockedPetTypes, options);
+        string json = JsonSerializer.Serialize(UnlockedPetTypes, options);
         string path = SaveDir + "PetTypes.json";
+        File.WriteAllText(path, json);
+    }
+
+    public static void SaveGlobalData()
+    {
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string json = JsonSerializer.Serialize(Data, options);
+        string path = SaveDir + "GlobalData.json";
         File.WriteAllText(path, json);
     }
 
@@ -137,15 +137,15 @@ public class Program
         Toys = JsonSerializer.Deserialize<List<Toy>>(toyJson)!;
     }
 
-    private static void LoadBank()
-    {
-        string loadedJson = File.ReadAllText(SaveDir + "Bank.json");
-        bank = JsonSerializer.Deserialize<Bank>(loadedJson)!;
-    }
-
     private static void LoadPetTypes()
     {
         string loadedJson = File.ReadAllText(SaveDir + "PetTypes.json");
-        unlockedPetTypes = JsonSerializer.Deserialize<List<PetType>>(loadedJson)!;
+        UnlockedPetTypes = JsonSerializer.Deserialize<List<PetType>>(loadedJson)!;
+    }
+
+    private static void LoadGlobalData()
+    {
+        string loadedJson = File.ReadAllText(SaveDir + "GlobalData.json");
+        Data = JsonSerializer.Deserialize<GlobalData>(loadedJson)!;
     }
 }
